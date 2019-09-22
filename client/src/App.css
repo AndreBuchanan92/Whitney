@@ -106,3 +106,8 @@ body {
   /* The max width of the info window. */
   width: 200px;
 }
+
+#map {
+  margin-bottom: .5em;
+  margin-top: 0em;
+}

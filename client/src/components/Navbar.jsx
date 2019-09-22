@@ -14,6 +14,13 @@ class Nav extends Component {
     console.log(name, val, [name]);
     this.props.onChange(name, val);
   };
+  submitNewLocation = () => {
+    let newLocation = {
+      Address: this.props.address,
+      Comments: this.props.comments,
+      Rating: this.props.rating
+    };
+  };
   render() {
     return (
       <div className="row" id="nav">

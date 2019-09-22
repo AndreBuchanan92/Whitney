@@ -6,7 +6,7 @@ import AddLoc from './components/AddLocation';
 import LocInfo from './components/LocationInfo';
 import { WhitneyProvider } from './Context';
 import SideContainer from './components/SideContainer.jsx';
-
+import Axios from 'axios'
 class App extends Component {
   state= {
     location:'',
@@ -14,8 +14,10 @@ class App extends Component {
     comments:'',
     rating:'',
     mapdata:'',
-    tab:''}
+    tab:''
+  }
 
+    
     toggleTab=(data)=>{
               let setTab=data
               this.setState({tab:setTab})
@@ -27,30 +29,13 @@ class App extends Component {
       });
     }
     
-    submitNewLocation=()=>{
-              let newLocation={
-                  
-                  Address: this.state.address,
-                  Comments: this.state.comments,
-                  Rating: this.state.rating
-              }
-          }
+    
   
   render(){
     return (
       <div className="App">
         <Nav onChange={this.handleInput} {...this.state}/>
-        <div className='row'>
-          <div className='col s12 m8'>
           <Map/>
-          </div>
-          <div className='col s12 m4'>
-          {/* <WhitneyProvider> */}
-           
-          {/* </WhitneyProvider> */}
-          </div>
-        </div>
-        
          {/* <AddLoc/>
          <LocInfo/>  */}
       </div>
