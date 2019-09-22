@@ -13,10 +13,17 @@
 
 #side {
   background-color: #9c9fa1;
-  padding: 1px;
   margin-top: .3em;
   position: fixed;
   right: 1em;
+}
+
+#mobile-nav {
+  background-color: #4d679b;
+  color: #c5c1c1;
+  font-size: 2em;
+  font-weight: 600;
+  text-align: center;
 }
 
 #smtext {
@@ -25,6 +32,7 @@
 
 #input {
   color: whitesmoke;
+  background-color: #2f4061;
 }
 
 #slogan {
@@ -37,10 +45,27 @@
   align-content: center;
 }
 
+.range-field {
+  margin-top: 0em;
+}
+
+#ratingLabel {
+  font-size: 1.2em;
+  font-weight: 600;
+  text-align: center
+}
+
+
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
 #map {
   height: 100%;
+}
+
+#marker {
+  border-radius: 20%;
+  background-color: #4d679bab;
+
 }
 
 /* Optional: Makes the sample page fill the window. */

@@ -1,10 +1,15 @@
 import React, { Component } from "react";
-import Container from "react-bootstrap/Container";
+import { Icon, Button } from "react-materialize";
 import Axios from "axios";
 import GoogleMapReact from "google-map-react";
-
+import restaurants from "../show.js";
 /* this is where you make marker */
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+const Marker = ({ text }) => (
+  <Button id="marker" tooltipoptions={{ position: "top" }}>
+    <Icon>accessible</Icon>
+  </Button>
+);
+
 class Map extends Component {
   state = {
     locations: "",
@@ -22,19 +27,46 @@ class Map extends Component {
     zoom: 11
   };
   componentDidMount() {
-    let url = "whateverthe api is";
-    Axios.get(url).then(data => {
-      if (data) {
+    let site = "701 Brazos St, Austin, TX";
+    Axios.get(
+      "https://maps.googleapis.com/maps/api/geocode/json?address=" +
+        site +
+        "&key=AIzaSyC-VBqDcnHsR9OlRgOyPxelWg4M5qrV23E"
+    )
+      .then(res => {
         let list = [];
-        console.log(data);
-        data.map(res => {
-          list.push(res);
-          this.setState({ locations: list });
+        console.log(res);
+        res.data.results.map(info => {
+          let geo = {
+            lat: info.geometry.location.lat,
+            lng: info.geometry.location.lng
+          };
+          list.push(geo);
+          console.log(list);
+          this.setState({ accessibleList: list });
         });
-      } else {
-        console.log("connect api");
-      }
-    });
+        console.log(res);
+      })
+      .catch();
+    let url = "whateverthe api is";
+    // Axios.get(url).then(data => {
+    //   if (data) {
+    //     let list = [];
+    //     console.log(data);
+    //     data.map(res => {
+    //       let site = res.address;
+    //       Axios.get(
+    //         "https://maps.googleapis.com/maps/api/geocode/json?" +
+    //           site +
+    //           "&AIzaSyC-VBqDcnHsR9OlRgOyPxelWg4M5qrV23E"
+    //       );
+    //       list.push(res);
+    //       this.setState({ locations: list });
+    //     });
+    //   } else {
+    //     console.log("connect api");
+    //   }
+    // });
   }
   render() {
     // const google = window.google;
@@ -106,6 +138,7 @@ class Map extends Component {
 
     //   return Popup;
     // }
+
     return (
       // <Container>
       <div id="map" style={{ height: "90vh", width: "100%" }}>
@@ -117,7 +150,19 @@ class Map extends Component {
           defaultZoom={this.props.zoom}
         >
           {/* this is where you make marker */}
-          <AnyReactComponent lat={59.955413} lng={30.337844} text="My Marker" />
+          {restaurants.map(data => {
+            console.log(data.location.lat);
+            var btn = document.createElement("BUTTON");
+            btn.innerHTML = (
+              <Marker
+                lat={data.location.lat}
+                lng={data.location.lng}
+                text={data.name}
+                tooltip={data.name}
+              />
+            );
+          })}
+          {/* <Marker lat={30.30718232} lng={-97.75599632} text="My Marker" /> */}
         </GoogleMapReact>
       </div>
 

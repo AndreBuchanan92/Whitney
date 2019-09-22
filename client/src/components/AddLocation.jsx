@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { TextInput } from "react-materialize";
+import { Range, Button, Icon } from "react-materialize";
+
+const trigger = <Icon>playlist_add</Icon>;
 class AddLoc extends Component {
   handleChange = e => {
     console.log(this.props);
@@ -10,6 +13,9 @@ class AddLoc extends Component {
     // let value = e.tatget.val;
     console.log(name);
   };
+  handleSubmit() {
+    console.log("rating");
+  }
   render() {
     return (
       <div>
@@ -35,6 +41,16 @@ class AddLoc extends Component {
             onChange={this.handleChange}
             value={this.props.comments}
           ></TextInput>
+          <label id="ratingLabel">Accesibility Rating 1-5</label>
+          <Range
+            min="0"
+            max="5"
+            name="rating"
+            id="rating"
+            onChange={this.handleChange}
+            value={this.props.rating}
+          />
+          <Button onClick={this.handleSubmit}>Add Location</Button>
           {/* <Form.Label>User</Form.Label>
           <Form.Group>
             <Form.Label>Location Name:</Form.Label>

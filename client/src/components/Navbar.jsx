@@ -1,12 +1,17 @@
 import React, { Component } from "react";
-import {
-  Navbar,
-  NavItem,
-  Button,
-  SideNav,
-  SideNavItem
-} from "react-materialize";
+import { Navbar, Button, SideNav, Icon } from "react-materialize";
+
 import AddLoc from "./AddLocation";
+
+const trigger = (
+  <Button
+    id="side"
+    tooltip="Add a new Location"
+    tooltipoptions={{ position: "bottom" }}
+  >
+    <Icon>playlist_add</Icon>
+  </Button>
+);
 
 class Nav extends Component {
   handlePass = (name, val) => {
@@ -28,18 +33,10 @@ class Nav extends Component {
           <span id="whitney">Whitney</span>
           <SideNav
             id="addNew"
-            trigger={<Button id="side">Add Location</Button>}
+            trigger={trigger}
             options={("right", { closeOnClick: true })}
           >
-            <header id="slogan">
-              Help us Help you.
-              <span>
-                <p id="smtext">
-                  You can add new locations and make comments to tell others
-                  when to find Accessible places
-                </p>
-              </span>
-            </header>
+            <header id="slogan">Help Us Help You!</header>
             <AddLoc onChange={this.handlePass} {...this.props} />
           </SideNav>
         </Navbar>
