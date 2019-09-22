@@ -23,13 +23,13 @@ class Nav extends Component {
   };
   render() {
     return (
-      <div className="row" id="nav">
+      <div id="nav">
         <Navbar className="nav">
           <span id="whitney">Whitney</span>
           <SideNav
             id="addNew"
             trigger={<Button id="side">Add Location</Button>}
-            options={("left", { closeOnClick: true })}
+            options={("right", { closeOnClick: true })}
           >
             <header id="slogan">
               Help us Help you.
